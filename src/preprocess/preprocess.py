@@ -10,7 +10,6 @@ from utils.enums import ExtendedEnum
 
 if TYPE_CHECKING:
     from utils.config import Config
-    from utils.hyperparameters import Hyperparameters  # type: ignore
 
 
 class Encoder(ExtendedEnum):
@@ -21,10 +20,13 @@ class Encoder(ExtendedEnum):
 class Preprocess(ABC):
     """Abstract class that does the learning process of the model."""
 
-    def __init__(self, hyperparameters: Hyperparameters):
+    def __init__(
+        self,
+        config
+    ):
         """Definition of Ranking Model constructor.
 
         Args:
             hyperparameters (Hyperparameters): model parameters
         """
-        pass
+        self.config = config

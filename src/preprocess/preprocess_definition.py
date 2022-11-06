@@ -2,9 +2,9 @@
 
 from utils.enums import ExtendedEnum
 
-from src.preprocess.lite_preprocess import LitePreprocess
+from preprocess.lite_preprocess import LitePreprocess
 
-class RankingModels(ExtendedEnum):
+class PreprocessingList(ExtendedEnum):
 
     """Class used to assign preprocesser."""
 

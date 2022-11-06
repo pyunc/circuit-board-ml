@@ -13,14 +13,12 @@ class BaseArchitecture(ABC):
 
     def __init__(
         self,
-        function_config: str,
-        model_config: str
+        config: str
     ):
         """Class constructor."""
-        self.function_config = function_config
-        self.model_config = model_config
+        self.config = config
 
     @abstractmethod
-    def run(self):
-        """Run abstract method."""
+    def build(self):
+        """Build abstract method."""
         raise NotImplementedError()
