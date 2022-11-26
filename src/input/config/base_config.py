@@ -27,7 +27,7 @@ class Config(object):
 
         self.organized_data_path: str = '/home/paulo/Documents/project-practical-mlops/circuit-board-ml/src/input/data/organized_data'
 
-        self.model_save_path: str = '/home/paulo/Documents/project-practical-mlops/circuit-board-ml/src/input/data/saved_model'
+        self.model_save_path: str = '/home/paulo/Documents/project-practical-mlops/circuit-board-ml/webapp/saved_model/'
 
         self.preprocess: str = 'LITEPREPROCESS'
 

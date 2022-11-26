@@ -1,5 +1,4 @@
-from src.input.config.base_config import Config
-
+from input.config.base_config import Config
 
 class ModelConfig(Config):
     """Base config object."""
@@ -10,4 +9,4 @@ class ModelConfig(Config):
 
         """Class constructor."""
 
-        self.selected_model: str = 'ALTERNATING_LEAST_SQUARE'
+        pass
