@@ -1,8 +1,12 @@
-from models.architecture.base_architecture import BaseArchitecture
+from datetime import datetime
+
 import tensorflow as tf
+from keras import applications, layers, models, preprocessing, utils
 from tensorflow import keras
-from keras import layers, preprocessing, models, utils, applications, layers
+
 from input.config.base_config import Config
+from models.architecture.base_architecture import BaseArchitecture
+
 
 class MobileNet(BaseArchitecture):
 
@@ -42,7 +46,12 @@ class MobileNet(BaseArchitecture):
                                             factor=0.5, 
                                             min_lr=0.00001)
 
-        callbacks = [earlystop, learning_rate_reduction]
+        logdir="logs/fit/" + datetime.now().strftime("%Y%m%d-%H%M%S")
+        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=logdir)
+
+        callbacks = [earlystop, learning_rate_reduction, tensorboard_callback]
+
+        self.config.logger.info(f'Mobile net model builded')
 
         return model, callbacks
 

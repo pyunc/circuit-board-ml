@@ -1,10 +1,10 @@
 """This script is used to assign preprocess pipelines."""
 
-from utils.enums import ExtendedEnum
+from enum import Enum
 
 from preprocess.lite_preprocess import LitePreprocess
 
-class PreprocessingList(ExtendedEnum):
+class PreprocessingList(Enum):
 
     """Class used to assign preprocesser."""
 

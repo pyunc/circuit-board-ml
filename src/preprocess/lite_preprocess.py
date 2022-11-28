@@ -11,6 +11,7 @@ import glob
 import shutil
 from sklearn.model_selection import train_test_split
 from input.config.base_config import Config
+import re
 
 BATCH_SIZE=15
 SEED = 42
@@ -44,6 +45,9 @@ class LitePreprocess(Preprocess):
         for path in glob.glob(self.config.downloaded_data_path+'/*/*/*.jpg'):
             files_path.append(path)
 
+        if not os.path.exists(self.config.organized_data_path):
+            os.makedirs(self.config.organized_data_path)
+        
         # downloaded -> organized
         for files in files_path:
             shutil.move(src=files, dst=self.config.organized_data_path)
@@ -77,17 +81,17 @@ class LitePreprocess(Preprocess):
                     # Delete corrupted image
                     os.remove(fpath)
 
-        self.config.logger.info(f'Deleted {num_skipped} images')
+        self.config.logger.info(f'Deleted {num_skipped} images!')
 
     def create_dataset(self, organized_files):
         labels = []
 
         for filename in organized_files:
-            label = filename.split('_')[1].split('.')[0]
-            if label == 'temp':
+            if re.findall('temp', filename):
                 labels.append(0)
             else:
                 labels.append(1)
+            
 
         df = pd.DataFrame({
             'filename': organized_files,
@@ -96,13 +100,17 @@ class LitePreprocess(Preprocess):
 
         df["label"] = df["label"].replace({0: 'Good', 1: 'Bad'})
 
+        self.config.logger.info(f'Datasets creation done!')
+
         return df
 
-    def train_test_split(self, df):
+    def dataset_split(self, df):
 
         train_df, validate_df = train_test_split(df, test_size=0.20, random_state=42)
         train_df = train_df.reset_index(drop=True)
         validate_df = validate_df.reset_index(drop=True)
+
+        self.config.logger.info(f'Dataset split done!')
 
         return train_df, validate_df
 
@@ -144,6 +152,8 @@ class LitePreprocess(Preprocess):
                 )
         )
 
+        self.config.logger.info(f'Image Generator done!')
+
         return train_generator, validation_generator
 
     def run(self):
@@ -154,9 +164,11 @@ class LitePreprocess(Preprocess):
 
         df = self.create_dataset(organized_files)
 
-        train_df, validate_df = self.train_test_split(df)
+        train_df, validate_df = self.dataset_split(df)
 
         train_generator, validation_generator = self.image_generator(train_df, validate_df)
+
+        self.config.logger.info(f'Lite Preprocess finished')
 
         return train_generator, validation_generator
 

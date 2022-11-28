@@ -1,12 +1,8 @@
 """App Train."""
-import glob
-import os
-import random
-import shutil
+
 import warnings
-
-warnings.simplefilter("ignore") # disable Keras warnings for this tutorial
-
+import os
+warnings.simplefilter("ignore")
 from input.config.base_config import Config
 from models.architecture.architecture_definition import ArchsList
 from preprocess.preprocess_definition import PreprocessingList
@@ -17,6 +13,7 @@ FAST_RUN = True
 EVALUATION = False
 BATCH_SIZE = 16
 
+
 def main(config):
 
     preprocess = PreprocessingList[config.preprocess].value
@@ -24,24 +21,38 @@ def main(config):
 
     selected_model = ArchsList[config.selected_model].value
     model, callbacks = selected_model(config).build()
-    
-    epochs=1 if FAST_RUN else 10
 
-    history = model.fit_generator(
-        generator=train_generator, 
+    epochs = 5 if FAST_RUN else 10
+
+    # history = model.fit_generator(
+    model.fit_generator(
+        generator=train_generator,
         epochs=epochs,
         validation_data=validation_generator,
         validation_steps=int(validation_generator.n)//BATCH_SIZE,
         steps_per_epoch=int(train_generator.n)//BATCH_SIZE,
         callbacks=callbacks
     )
-    
-    model.save(config.model_save_path)
-    
+
+    config.logger.info('Model Training finished!')
+
+    model.save(os.path.join(
+        config.model_save_dev_path,
+        'model.h5')
+    )
+
+    model.save(os.path.join(
+        config.model_save_prd_path,
+        'model.h5')
+    )
+
+    config.logger.info('Model Saving finished!')
+
+
 if __name__ == '__main__':
     main(config)
 
-# # evaluation
+# TODO evaluation module
 
 # fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 12))
 # ax1.plot(history.history['loss'], color='b', label="Training loss")

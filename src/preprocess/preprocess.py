@@ -6,13 +6,13 @@ import os
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any, List, Optional, Tuple
 
-from utils.enums import ExtendedEnum
+from enum import Enum
 
 if TYPE_CHECKING:
     from utils.config import Config
 
 
-class Encoder(ExtendedEnum):
+class Encoder(Enum):
     ONE_HOT_ENCODER = "OneHotEncoder"
     ORDINAL_ENCODER = "OrdinalEncoder"
 
