@@ -12,7 +12,7 @@ This mini classifier project aims to build a machine learning API using Flask, D
 # RestAPI and Streamlit
 # TensorflowEdge 
 
-<!-- ![classification-examples-dog](https://github.com/pyunc/project-practical-mlops-3-classifier/blob/main/prediction_dogs.png) -->
+![classification-examples-dog](https://github.com/pyunc/circuit-board-ml/blob/main/circuit-board-ml.png)
 
 
 Project inspired by those nice github:
