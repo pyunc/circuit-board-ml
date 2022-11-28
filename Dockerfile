@@ -4,14 +4,14 @@ ARG VERSION
 
 LABEL org.label-schema.version=$VERSION
 
-COPY ./requirements.txt /webapp/requirements.txt
+COPY ./requirements.txt /webapp_flask/requirements.txt
 
-WORKDIR /webapp
+WORKDIR /webapp_flask
 RUN pip install -r requirements.txt
-COPY ./webapp/app.py /webapp/app.py
-COPY ./webapp/model.h5 /webapp/model.h5
-COPY webapp/templates/* /webapp/templates/
-COPY webapp/uploads/* /webapp/uploads/
+COPY ./webapp_flask/app.py /webapp_flask/app.py
+COPY ./webapp_flask/saved_model/* /webapp_flask/saved_model/
+COPY webapp_flask/templates/* /webapp_flask/templates/
+COPY webapp_flask/uploads/* /webapp_flask/uploads/
 EXPOSE 5000 5050
 ENTRYPOINT [ "python" ]
 CMD [ "app.py" ]

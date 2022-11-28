@@ -29,6 +29,11 @@ share/python-wheels/
 MANIFEST
 notebooks/downloaded_data
 notebooks/organized_data
+webapp_fastapi/organized_data
+notebooks/logs
+*/saved_model
+src/logs
+src/saved_model
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

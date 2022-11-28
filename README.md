@@ -6,6 +6,12 @@ POC - circuit board classifier ml project
 
 This mini classifier project aims to build a machine learning API using Flask, Docker, Streamlit and Kubernets. 
 
+# batch and real time
+# FastAPI
+# Docker
+# RestAPI and Streamlit
+# TensorflowEdge 
+
 <!-- ![classification-examples-dog](https://github.com/pyunc/project-practical-mlops-3-classifier/blob/main/prediction_dogs.png) -->
 
 
