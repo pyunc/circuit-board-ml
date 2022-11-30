@@ -1,0 +1,13 @@
+#!/bin/bash
+
+bruce cloud train \
+-i s3://dev-ifood-ml-sagemaker/rec-darwin-als/input/data/ \
+-o s3://dev-ifood-ml-sagemaker/rec-darwin-als/models/ \
+-e ml.c5.9xlarge \
+-h ./input/config/hyperparameters.json \
+-n 1 \
+-c training \
+-c validation \
+-r arn:aws:iam::563718358426:role/AmazonSageMaker-ExecutionRole \
+-v 64 \
+--tags "[{\"Key\": \"service-name\",\"Value\": \"recplat-darwin-als\"},{\"Key\": \"owner-layer-slug\",\"Value\": \"dat-sci-rec\"}]"

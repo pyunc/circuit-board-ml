@@ -7,7 +7,7 @@
 * This mini classifier project aims to build a machine learning API for a circuit board quality checking device using computer vision. 
 * The stacked used for this project are Tensorflow, TensorflowLite, Flask, Docker, Streamlit and Kubernets. 
 
-
+# TODO UPDATE image
 ![circuit-board-ml](https://github.com/pyunc/circuit-board-ml/blob/main/documentation/circuit-board-ml.png)
 
 ## Specific Objetives
@@ -18,15 +18,11 @@
     * An endpoint able to batch prediction jobs 
     * An edge device such as Raspberry Pi for real time classification/detection 
 
+# TODO UPDATE image
 ![circuit-board-ml](https://github.com/pyunc/circuit-board-ml/blob/main/documentation/circuit-board-ml.png)
 
-ml-model inspired by those nice github:
 
-- https://towardsdatascience.com/image-classification-of-pcbs-and-its-web-application-flask-c2b26039924a
-- https://github.com/utk-ink/Defect-Detection-of-PCB
-
-
-## Initial setup or MakeFile
+## Manual build or Automatic build 
 
 python -m venv .env
 source .env/bin/activate
@@ -35,9 +31,11 @@ pip install -r requirements.txt
 
 **or** 
 
-`make install`
+`./setup.sh install`
 
 ## Docker 
+
+# TODO flask
 
 * build image
 
@@ -46,16 +44,21 @@ pip install -r requirements.txt
 * spin the container
 
 `docker run -d -p 5000:5000 -d circuit-board-ml`
-`uvicorn app:app --reload`
 
 * open in a browser
 
 `http://localhost:5000/`
 
 
+# TODO Docker for FastAPI
+
+`uvicorn app:app --reload`
+
+
 ## Python
 Using Python 3.8.1
 
+# TODO update project organization
 ## Project organization 
 
     ├── Makefile           <- Makefile with commands like `make install`
@@ -71,3 +74,8 @@ Using Python 3.8.1
     │   ├── model.h3                             <- dumped model
     │   ├── uploads                              <- folder responsible for receiving uploaded images from the template
     │   ├── templates                            <- html home page
+
+
+## ml-model inspired by those nice github:
+- https://towardsdatascience.com/image-classification-of-pcbs-and-its-web-application-flask-c2b26039924a
+- https://github.com/utk-ink/Defect-Detection-of-PCB
